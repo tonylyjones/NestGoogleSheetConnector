@@ -1,5 +1,5 @@
 {
-  "name": "nest-google-sheet-connector",
+  "name": "@tonylyjones/nest-google-sheet-connector",
   "version": "2.0.0",
   "description": "A Google Sheet integration for NestJs",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
     "nestjs",
     "library"
   ],
-  "author": "johnkhansrc",
+  "author": "tonylyjones",
   "license": "MIT",
   "dependencies": {
     "@nestjs/common": "^9.2.1",
@@ -26,5 +26,5 @@
     "rimraf": "^3.0.2",
     "typescript": "^4.9.4"
   },
-  "repository": "git@github.com:johnkhansrc/NestGoogleSheetConnector.git"
+  "repository": "git@github.com:tonylyjones/NestGoogleSheetConnector.git"
 }
