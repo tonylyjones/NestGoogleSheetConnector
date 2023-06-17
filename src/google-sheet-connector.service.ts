@@ -412,6 +412,72 @@ export class GoogleSheetConnectorService {
   }
 
   /**
+   * Add a sheet
+   *
+   * @param spreadsheetId
+   * @param title
+   * @param rowCount
+   * @param columnCount
+   *
+   * @returns {GaxiosPromise<sheets_v4.Schema$BatchUpdateSpreadsheetResponse>}
+   */
+  async addSheet(
+    spreadsheetId: string,
+    title: string,
+    rowCount = 20,
+    columnCount = 12
+  ): GaxiosPromise<sheets_v4.Schema$BatchUpdateSpreadsheetResponse> {
+    const sheets = this.getGoogleSheetConnect()
+
+    return await sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
+      requestBody: {
+        requests: [
+          {
+            addSheet: {
+              properties: {
+                title,
+                gridProperties: {
+                  rowCount,
+                  columnCount,
+                },
+              },
+            },
+          },
+        ],
+      },
+    })
+  }
+
+  /**
+   * Delete a sheet
+   *
+   * @param spreadsheetId
+   * @param sheetId
+   *
+   * @returns {GaxiosPromise<sheets_v4.Schema$BatchUpdateSpreadsheetResponse>}
+   */
+  async deleteSheet(
+    spreadsheetId: string,
+    sheetId: number
+  ): GaxiosPromise<sheets_v4.Schema$BatchUpdateSpreadsheetResponse> {
+    const sheets = this.getGoogleSheetConnect()
+
+    return sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
+      requestBody: {
+        requests: [
+          {
+            deleteSheet: {
+              sheetId,
+            },
+          },
+        ],
+      },
+    })
+  }
+
+  /**
    * Get Google Sheet Connection
    *
    * @returns sheets_v4.Sheets
